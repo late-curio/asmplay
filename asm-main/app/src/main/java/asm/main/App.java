@@ -7,19 +7,22 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 public class App {
     public String getGreeting(Integer i) {
         return "Hello World! " + i;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
         MyClass myClass = new MyClass();
+        Future<String> future = myClass.calculateAsync();
         Integer i = 100;
         Map<String, String> map = new HashMap<>();
         List<Integer> list = new ArrayList<>();
         list.add(i);
-        map.put("Something", "Here");
+        map.put("Something", future.get());
         System.out.println(new App().getGreeting(list.get(0)));
         System.out.println(map.get("Something"));
     }
