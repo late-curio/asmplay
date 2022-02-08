@@ -16,13 +16,13 @@ public class App {
     }
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
-        MyClass myClass = new MyClass();
-        Future<String> future = myClass.calculateAsync();
+//        Library library
+//        Future<String> future = myClass.calculateAsync();
         Integer i = 100;
         Map<String, String> map = new HashMap<>();
         List<Integer> list = new ArrayList<>();
         list.add(i);
-        map.put("Something", future.get());
+        map.put("Something", "Here"); // future.get());
         System.out.println(new App().getGreeting(list.get(0)));
         System.out.println(map.get("Something"));
     }
