@@ -14,6 +14,7 @@ public class App {
     }
 
     public static void main(String[] args) {
+        MyClass myClass = new MyClass();
         Integer i = 100;
         Map<String, String> map = new HashMap<>();
         List<Integer> list = new ArrayList<>();
