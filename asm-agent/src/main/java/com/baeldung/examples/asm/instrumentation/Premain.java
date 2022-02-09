@@ -1,5 +1,6 @@
 package com.baeldung.examples.asm.instrumentation;
 
+import asm.lib.Library;
 import com.baeldung.examples.asm.CustomClassWriter;
 import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.IllegalClassFormatException;
@@ -17,7 +18,7 @@ public class Premain {
 
     public static void premain(String agentArgs, Instrumentation inst) {
         System.out.println("Premain!!!");
-
+        Library library = new Library();
         Arrays.stream(Integer.class.getDeclaredFields())
                         .forEach((field) -> System.out.println(field.getName()));
 

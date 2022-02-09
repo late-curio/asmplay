@@ -19,13 +19,10 @@ public class App {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         Library library = new Library();
-        Future<String> future = library.calculateAsync();
+        //Future<String> future = library.calculateAsync();
         Integer i = 100;
-        Map<String, String> map = new HashMap<>();
-        List<Integer> list = new ArrayList<>();
-        list.add(i);
-        map.put("Something", future.get());
-        System.out.println(new App().getGreeting(list.get(0)));
-        System.out.println(map.get("Something"));
+        Boolean greet = library.someLibraryMethod();
+        System.out.println(new App().getGreeting(i));
+        System.out.println(greet.toString());
     }
 }
