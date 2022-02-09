@@ -9,7 +9,9 @@ This project encapsulates three sub projects.
 
 These are all cobbled together and ran via `run.sh` at same level as this README.
 
-Requires a couple aliases:
+Requires SDK man being installed and a couple exported values for `JDK8` and `JDK17`:
 
-1. `usejava8` - points to command that switches current JDK to 8
-2. `usejava17` - points to command that switches current JDK to 17
+```
+export JDK8='8.0.292.hs-adpt'
+export JDK17='17-open'
+```

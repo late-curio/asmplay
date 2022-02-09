@@ -1,9 +1,11 @@
-usejava8
+#!/bin/bash
+. ~/.sdkman/bin/sdkman-init.sh
+sdk use java $JDK8
 cd asm-lib
 ./gradlew clean build publishToMavenLocal
 cd ../asm-agent
 mvn clean install
-usejava17
+sdk use java $JDK17
 cd ../asm-main
 ./gradlew clean build
 cd ..
