@@ -38,7 +38,7 @@ publishing {
         create<MavenPublication>("maven") {
             groupId = "twcrone"
             artifactId = "library"
-            version = "1.0"
+            version = "1.1"
 
             from(components["java"])
         }

@@ -1,5 +1,9 @@
-cd asm-agent
+usejava8
+cd asm-lib
+./gradlew clean build publishToMavenLocal
+cd ../asm-agent
 mvn clean install
+usejava17
 cd ../asm-main
 ./gradlew clean build
 cd ..
