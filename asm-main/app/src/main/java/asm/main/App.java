@@ -5,10 +5,6 @@ package asm.main;
 
 import asm.lib.Library;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
@@ -19,10 +15,11 @@ public class App {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         Library library = new Library();
-        //Future<String> future = library.calculateAsync();
+        Future<String> future = library.calculateAsync();
         Integer i = 100;
         Boolean greet = library.someLibraryMethod();
         System.out.println(new App().getGreeting(i));
-        System.out.println(greet.toString());
+        System.out.println(greet);
+        System.out.println(future.get());
     }
 }
