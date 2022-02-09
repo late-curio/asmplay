@@ -20,6 +20,11 @@
             <artifactId>asm-util</artifactId>
             <version>${asm.version}</version>
         </dependency>
+        <dependency>
+            <groupId>twcrone</groupId>
+            <artifactId>library</artifactId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>
 
     <build>
