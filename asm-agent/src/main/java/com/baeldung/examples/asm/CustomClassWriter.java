@@ -28,7 +28,7 @@ public class CustomClassWriter {
     AddFieldAdapter addFieldAdapter;
     AddInterfaceAdapter addInterfaceAdapter;
     PublicizeMethodAdapter pubMethAdapter;
-    final static String CLASSNAME = "java.lang.Integer";
+    final static String CLASSNAME = "asm/lib/Library";
     final static String CLONEABLE = "java/lang/Cloneable";
 
     public CustomClassWriter() {
@@ -38,37 +38,40 @@ public class CustomClassWriter {
             writer = new ClassWriter(reader, 0);
 
         } catch (IOException ex) {
-            Logger.getLogger(CustomClassWriter.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace(System.err);
+//            Logger.getLogger(CustomClassWriter.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     public CustomClassWriter(byte[] contents) {
+        System.out.println("Creating CustomClassWriter");
         reader = new ClassReader(contents);
         writer = new ClassWriter(reader, 0);
     }
 
-    public static void main(String[] args) {
-        CustomClassWriter ccw = new CustomClassWriter();
-        ccw.publicizeMethod();
-    }
+//    public static void main(String[] args) {
+//        CustomClassWriter ccw = new CustomClassWriter();
+//        ccw.publicizeMethod();
+//    }
 
     public byte[] addField() {
+        System.out.println("Adding field...");
         addFieldAdapter = new AddFieldAdapter("aNewBooleanField", org.objectweb.asm.Opcodes.ACC_PUBLIC, writer);
         reader.accept(addFieldAdapter, 0);
         return writer.toByteArray();
     }
 
-    public byte[] publicizeMethod() {
-        pubMethAdapter = new PublicizeMethodAdapter(writer);
-        reader.accept(pubMethAdapter, 0);
-        return writer.toByteArray();
-    }
-
-    public byte[] addInterface() {
-        addInterfaceAdapter = new AddInterfaceAdapter(writer);
-        reader.accept(addInterfaceAdapter, 0);
-        return writer.toByteArray();
-    }
+//    public byte[] publicizeMethod() {
+//        pubMethAdapter = new PublicizeMethodAdapter(writer);
+//        reader.accept(pubMethAdapter, 0);
+//        return writer.toByteArray();
+//    }
+//
+//    public byte[] addInterface() {
+//        addInterfaceAdapter = new AddInterfaceAdapter(writer);
+//        reader.accept(addInterfaceAdapter, 0);
+//        return writer.toByteArray();
+//    }
 
     public class AddInterfaceAdapter extends ClassVisitor {
 
@@ -98,6 +101,7 @@ public class CustomClassWriter {
             super(ASM4, cv);
             this.cv = cv;
             tracer = new TraceClassVisitor(cv, pw);
+            System.out.println("*** Initializing PublicizeMethodAdapter ***");
         }
 
         @Override

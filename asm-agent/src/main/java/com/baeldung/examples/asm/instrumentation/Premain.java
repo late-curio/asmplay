@@ -18,28 +18,17 @@ public class Premain {
 
     public static void premain(String agentArgs, Instrumentation inst) {
         System.out.println("Premain!!!");
-        Library library = new Library();
-        Arrays.stream(Integer.class.getDeclaredFields())
-                        .forEach((field) -> System.out.println(field.getName()));
-
-        inst.addTransformer(new ClassFileTransformer() {
-
-            @Override
-            public byte[] transform(ClassLoader l, String name, Class c,
-                    ProtectionDomain d, byte[] b)
-                    throws IllegalClassFormatException {
+        inst.addTransformer((l, name, c, d, b) -> {
+            if (!name.startsWith("java") && !name.startsWith("sun") && !name.startsWith("jdk")) {
                 System.out.println("Got " + name);
-                if (name.equals("java/lang/Integer")) {
-                    System.out.println("Got Integer!");
-                    CustomClassWriter cr = new CustomClassWriter(b);
-                    return cr.addField();
-                }
-                return b;
+                //System.out.println(Arrays.toString(b));
+                CustomClassWriter cr = new CustomClassWriter(b);
+                System.out.println("Adding field...");
+                return cr.addField();
             }
+            return b;
         });
         System.out.println("After Premain!!!");
-        Arrays.stream(Integer.class.getDeclaredFields())
-                .forEach((field) -> System.out.println(field.getName()));
     }
 
 }

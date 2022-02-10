@@ -5,6 +5,7 @@ package asm.main;
 
 import asm.lib.Library;
 
+import java.util.Arrays;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
@@ -14,7 +15,9 @@ public class App {
     }
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
-        Library library = new Library();
+        Library library = new Library();;
+        Arrays.stream(Library.class.getFields())
+                .forEach((field) -> System.out.println(field.getName()));
         Future<String> future = library.calculateAsync();
         Integer i = 100;
         Boolean greet = library.someLibraryMethod();

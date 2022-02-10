@@ -7,7 +7,10 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
+@Weave
 public class Library {
+    private String someField;
+
     public boolean someLibraryMethod() {
         return true;
     }
